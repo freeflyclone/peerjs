@@ -106,6 +106,10 @@ export interface PeerEvents {
 	 * Errors from the underlying socket and PeerConnections are forwarded here.
 	 */
 	error: (error: PeerError<`${PeerErrorType}`>) => void;
+	/**
+	 * Emitted when the signalling server needs to notify clients of peers list changes
+	 */
+	notification: (notification: any) => void;
 }
 /**
  * A peer who can initiate connections with other peers.
@@ -432,6 +436,11 @@ export class Peer extends EventEmitterWithError<PeerErrorType, PeerEvents> {
 
 				break;
 			}
+
+			case ServerMessageType.PeersChanged:
+				this.emit("notification", message);
+				break;
+
 			default: {
 				if (!payload) {
 					logger.warn(
