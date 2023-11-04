@@ -184,7 +184,8 @@
 		"format:check": "prettier --check .",
 		"semantic-release": "semantic-release",
 		"e2e": "wdio run e2e/wdio.local.conf.ts",
-		"e2e:bstack": "wdio run e2e/wdio.bstack.conf.ts"
+		"e2e:bstack": "wdio run e2e/wdio.bstack.conf.ts",
+		"install": "cp dist/peerjs.min.js* ../../www/peerjs"
 	},
 	"devDependencies": {
 		"@parcel/config-default": "^2.9.3",
